@@ -1,0 +1,53 @@
+Docker
+1)	How to Tag a container
+Ans:- 
+docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+To tag a local image with name “httpd” into the “fedora” repository with “version1.0”:
+$ docker tag httpd fedora/httpd:version1.0
+
+2)	how to limit the resources of container
+ans:-
+docker run -it --cpus=".5" ubuntu /bin/bash
+-m or --memory=	The maximum amount of memory the container can use. If you set this option, the minimum allowed value is 4m (4 megabyte).
+--memory-swap*	The amount of memory this container is allowed to swap to disk. See --memory-swap details.
+
+--memory-swappiness	By default, the host kernel can swap out a percentage of anonymous pages used by a container. You can set --memory-swappiness to a value between 0 and 100, to tune this percentage. See --memory-swappinessdetails.
+
+
+
+docker stats to check the resource usage.
+
+https://docs.docker.com/config/containers/resource_constraints/
+
+
+3)	diff between docker deamon and docker container
+ans:-
+
+Images are frozen immutable snapshots of live containers. Containers are running (or stopped) instances of some image.
+
+Docker Client : This is the utility we use when we run any docker commands e.g. docker run (docker container run) , docker images , docker ps etc. It allows us to run these commands which a human can easily understand.
+Docker Daemon/Engine: This is the part which does rest of the magic and knows how to talk to the kernel, makes the system calls to create, operate and manage containers, which we as users of Docker dont have to worry about.
+
+Communication between docker client and docker engine happens over REST api. Docker engine runs on port 2376 by default.
+4)	dockerfile extension
+ans:-
+Dockerfile has no extension. if your using docker on docker on windows use notepad ++ to create a dockerfile while saving select “All type “ and save the file name as “Dockerfile”.
+5)	How 3 containers connect/communicate with each other
+-	By default Docker will attach all containers to a single docker0 bridge, providing a path for packets to travel between them
+
+Docker network ls
+Create new bridge network:-
+Docker network create –d bridge net_name
+Now create containers to use this bridged network.
+
+Docker run –d –it –p 8080:80 –network=”net_name” –name=server1 nginx:alpine
+Docker run –d –it –p 8081:80 –network=”net_name” –name=server2 nginx:alpine
+Both above containers will be able to communicate with bridge network name net_name.
+
+Docker compose.
+6)	Diff between aws ecs and container
+7)	What to do if ansible is not able to connect to client
+
+Jenkins.
+Jenkinsfile extension
+
